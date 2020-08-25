@@ -40,3 +40,6 @@ $VCConn = Connect-VIServer -Server $vCenter -User $vCenterUser -Password $vCente
 
 New-VM -Name "$VMName" -Template $Template -ResourcePool $ResourcePool -Datastore $datastore -Location $DestinationFolder
 Start-VM -VM "$VMName"
+Invoke-VMScript -ScriptText “curl -o /home/apache.sh https://raw.githubusercontent.com/vmtocloud/apache_centos7/master/apache.sh” -vm "$VMName" -GuestUser root -GuestPassword VMware1!
+Invoke-VMScript -ScriptText “sh /home/apache.sh” -vm "$VMName" -GuestUser root -GuestPassword VMware1!
+(Get-VMGuest -VM (Get-VM -name "$VMName")).IPAddress
