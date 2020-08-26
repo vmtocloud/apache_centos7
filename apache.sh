@@ -1,8 +1,8 @@
 #!/bin/sh
-yum -y install httpd
-systemctl enable httpd
-firewall-cmd --permanent --add-service=http
-firewall-cmd --permanent --add-service=https
-firewall-cmd --reload
-systemctl start httpd.service
+sudo yum -y install httpd
+sudo systemctl enable httpd
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-service=https
+sudo firewall-cmd --reload
+sudo systemctl start httpd.service
 exit 0
